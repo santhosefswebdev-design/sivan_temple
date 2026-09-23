@@ -1,0 +1,279 @@
+<?php $db = db_connect(); ?>
+<html>
+	<head>
+		<title>
+		  <?php echo 'Ubayam Invoice - ' . $temple_details['name']; ?>
+		</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+		<style>
+		  body {
+			font-family: 'Barlow', sans-serif;
+		  }
+
+		  table {
+			border-collapse: collapse;
+		  }
+
+		  table td {
+			padding: 5px;
+		  }
+		</style>
+	</head>
+	<body>
+		<?php
+		// Create a function for converting the amount in words
+		if(!function_exists('AmountInWords')){
+			function AmountInWords(float $amount)
+			{
+				$amount_after_decimal = round($amount - ($num = floor($amount)), 2) * 100;
+				$get_paise = ($amount_after_decimal > 0) ? " and Cents " . trim(NumToWords($amount_after_decimal)) : '';
+				return (NumToWords($amount) ? 'Ringgit ' . trim(NumToWords($amount)) . '' : '') . $get_paise . ' Only';
+
+			}
+		}
+		if(!function_exists('NumToWords')){
+			function NumToWords($num)
+			{
+				$num = floor($num);
+				$amt_hundred = null;
+				$count_length = strlen($num);
+				$x = 0;
+				$string = array();
+				$change_words = array(
+					0 => '',
+					1 => 'One',
+					2 => 'Two',
+					3 => 'Three',
+					4 => 'Four',
+					5 => 'Five',
+					6 => 'Six',
+					7 => 'Seven',
+					8 => 'Eight',
+					9 => 'Nine',
+					10 => 'Ten',
+					11 => 'Eleven',
+					12 => 'Twelve',
+					13 => 'Thirteen',
+					14 => 'Fourteen',
+					15 => 'Fifteen',
+					16 => 'Sixteen',
+					17 => 'Seventeen',
+					18 => 'Eighteen',
+					19 => 'Nineteen',
+					20 => 'Twenty',
+					30 => 'Thirty',
+					40 => 'Forty',
+					50 => 'Fifty',
+					60 => 'Sixty',
+					70 => 'Seventy',
+					80 => 'Eighty',
+					90 => 'Ninety'
+				);
+				$here_digits = array('', 'Hundred', 'Thousand', 'Lakh', 'Crore');
+				while ($x < $count_length) {
+					$get_divider = ($x == 2) ? 10 : 100;
+					$amount = floor($num % $get_divider);
+					$num = floor($num / $get_divider);
+					$x += $get_divider == 10 ? 1 : 2;
+					if ($amount) {
+						$add_plural = (($counter = count($string)) && $amount > 9) ? 's' : null;
+						$amt_hundred = ($counter == 1 && $string[0]) ? ' and ' : null;
+						$string[] = ($amount < 21) ? $change_words[$amount] . ' ' . $here_digits[$counter] . $add_plural . ' ' . $amt_hundred : $change_words[floor($amount / 10) * 10] . ' ' . $change_words[$amount % 10] . ' ' . $here_digits[$counter] . $add_plural . ' ' . $amt_hundred;
+					} else
+						$string[] = null;
+				}
+				//$implode_to_Rupees = implode('', array_reverse($string));
+				return (implode('', array_reverse($string)));
+			}
+		}
+		?>
+		<table align="center" width="100%">
+			<tr>
+				<td colspan="2">
+				  <table style="width:100%">
+					<tr>
+					  <td width="40%" align="left">
+						<img src="<?php echo base_url(); ?>/uploads/main/<?php echo $temple_details['image']; ?>" style="width:120px;" align="left">
+						<p style="min-height: 90px;">&nbsp;</p>
+					</td>
+					  <td width="60%" align="left">
+						<h2 style="text-align:left; margin-bottom: 0; margin-top: 0;">
+						  <?php echo $temple_details['name']; ?>
+						</h2>
+						<p style="text-align:left; font-size:16px; margin:5px;">
+						  <?php echo $temple_details['address1']; ?>, <br>
+						  <?php echo $temple_details['address2']; ?>,<br>
+						  <?php echo $temple_details['city'] . '-' . $temple_details['postcode']; ?><br>
+						  Tel :<?= $temple_details['telephone']; ?>
+						</p>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+		  </tr>
+			<tr>
+				<td colspan="2">
+					<hr>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<h2 style="text-align:center;"> Ubayam Voucher </h2>
+				</td>
+			</tr>
+			<tr>
+				<td align="left"><b>Date :</b>
+					<?php $date = new DateTime($qry1['dt']);
+					echo $date->format('d-m-Y'); ?>
+				</td>
+				<td align="right">
+					<p style="text-align:right; line-height:1.7em;"><b>Invoice :</b>
+						<?php echo $qry1['ref_no']; ?>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<table border="1" style="border:1px solid #CCC;" width="100%" align="center">
+						<tr>
+							<td width="40%"><b>Name </b> </td>
+							<td width="60%">
+								<?php echo $qry1['name']; ?>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Pay For </b> </td>
+							<td>
+								<?php echo $qry1['uname']; ?>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Amount(RM) </b> </td>
+							<td>
+								<?php echo number_format($qry1['amount'], '2', '.', ','); ?>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Paid Amount(RM) </b> </td>
+							<td>
+								<?php echo number_format($qry1['paidamount'], '2', '.', ','); ?>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Balance Amount(RM) </b> </td>
+							<td>
+								<?php echo ($qry1['balanceamount'] > 0) ? number_format($qry1['balanceamount'], '2', '.', ',') : 0.00; ?>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Amount In words </b> </td>
+							<td>
+								<?php echo AmountInWords($qry1['paidamount']); ?>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<h4 style="text-align:center;"> Payment Details </h4>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<table border="1" style="width:100%" align="center">
+						<tr>
+							<th width="33%" style="text-align:left">Payment Date</th>
+							<th width="33%">Payment Mode</th>
+							<th width="33%" style="text-align:left">Amount</th>
+						</tr>
+						<?php
+						foreach ($pay_details as $row) {
+							if($qry1['paid_through'] == "COUNTER"){ 
+								if(!empty($row['payment_mode'])){
+									$payment_mode = $db->table("payment_mode")->where('id', $row['payment_mode'])->get()->getRowArray();
+									$payment_mode_name = !empty($payment_mode['name']) ? $payment_mode['name'] : "";
+								}
+								else{
+									$ubayam_pay_gateway_data = $db->table("ubayam_payment_gateway_datas")->where('ubayam_id', $row['ubayam_id'])->get()->getRowArray();
+									$payment_mode_name = !empty($ubayam_pay_gateway_data['pay_method']) ? $ubayam_pay_gateway_data['pay_method'] : "";
+								}
+							}
+							else{
+								if(!empty($row['payment_mode'])){
+									$payment_mode_no = $db->table("payment_mode")->where('id', $row['payment_mode'])->get()->getRowArray();
+									$payment_mode_name = !empty($payment_mode_no['name']) ? $payment_mode_no['name'] : "";
+								}
+								else{
+									$payment_mode_name ="";
+								}
+							}
+							?>
+							<tr>
+								<td>
+									<?php echo date("d/m/Y", strtotime($row['date'])); ?>
+								</td>
+								<td align="center">
+									<?php echo $payment_mode_name; ?>
+								</td>
+								<td>
+									<?php echo $row['amount']; ?>
+								</td>
+							</tr>
+							<?php
+						}
+						?>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>Remarks :</b>
+					<?php echo $qry1['description']; ?>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<p><b>Declaration by the donor</b></p>
+					<p>To the best of my knowledge, this ubayam donation emanated from a clean source by virtue of any law. This
+						donation is done willingly without any duress purported for the Temple usefor whatsoever reason.
+						Henceforth, it shall be the property of the Temple and I shall reserve no rights and locus on the said
+						donations that entitle me to make any claim whatsoever in the future</p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<?php if (!empty($terms['ubayam'])) { ?>
+						<p>
+							<?php echo $terms['ubayam']; ?>
+						</p>
+					<?php } ?>
+				</td>
+			</tr>
+		</table>
+		<table align="center" width="100%">
+    <tr>
+        <td>AUTHORIZED BY - PRESIDENT</td>
+        <td>PREPARED BY - SECRETARY</td>
+        <td>RECEIVED BY - TREASURER</td>
+    </tr>
+</table>
+	</body>
+</html>

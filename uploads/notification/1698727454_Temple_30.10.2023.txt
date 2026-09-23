@@ -1,0 +1,22 @@
+code wise check chart of accounts_Need to be Check
+Except HALL BOOKING, MEMBER REGISTRATION,CEMETRY for both Online and Direct Booking
+
+30.10.2023
+----------
+1. Cash Donation/Ubayam/Member Registration when I click SAVE loader needed also print preview not showed
+2. Cash Donation/Ubayam/Member Registration Email Notification still came other temple logo, I need Rajamariamman temple logo
+   Still the name showed "Hindu Endowments Board" must be showed Rajamariamman temple name
+3. Stock Group Setting must be hide the Stock Category
+4. STOCK INWARD/OUTWARD - Deliver to STILL "SREE SELVA VINAYAGAR TEMPLE" still appeared also Mobile No was MISSING
+5. Ubayam Dashboard what amount we received, That amount only we need to be displayed not for an outstanding amount
+6. Check Ubayam Setting
+7. Prasadham Collection Date must be 2 days after booking not for same date
+8. Account Entries Payment-Receipt and Journal
+9. Email Template Ubayam voucher must be in order
+10. Member -> Member Type when I click SAVE Mandatory fields are displayed
+11. Member Notification need to be check
+12. Rental Default Whatsapp Message need the content ask to Shalveena
+13. Official Rent Receipt Eg. My rent RM 800.00 but I paid RM 400.00 but this report diplayed Property value
+    Payee amount (BALANCE AMOUNT) must be displayed... But here ot displayed
+
+

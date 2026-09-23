@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<script src="JSPrintManager/scripts/JSPrintManager.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+		
+		<script>
+
+			//WebSocket settings
+			JSPM.JSPrintManager.auto_reconnect = true;
+			JSPM.JSPrintManager.start();
+			JSPM.JSPrintManager.WS.onStatusChanged = function () {
+				if (jspmWSStatus()) {
+					//get client installed printers
+					JSPM.JSPrintManager.getPrinters().then(function (myPrinters) {
+						var options = '';
+						for (var i = 0; i < myPrinters.length; i++) {
+							options += '<option>' + myPrinters[i] + '</option>';
+						}
+						$('#installedPrinterName').html(options);
+					});
+				}
+			};
+
+			//Check JSPM WebSocket status
+			function jspmWSStatus() {
+				if (JSPM.JSPrintManager.websocket_status == JSPM.WSStatus.Open)
+					return true;
+				else if (JSPM.JSPrintManager.websocket_status == JSPM.WSStatus.Closed) {
+					alert('JSPrintManager (JSPM) is not installed or not running! Download JSPM Client App from https://neodynamic.com/downloads/jspm');
+					return false;
+				}
+				else if (JSPM.JSPrintManager.websocket_status == JSPM.WSStatus.Blocked) {
+					alert('JSPM has blocked this website!');
+					return false;
+				}
+			}
+
+			//Do printing...
+			function print(o) {
+				if (jspmWSStatus()) {
+					//generate an image of HTML content through html2canvas utility
+					html2canvas(document.getElementById('card'), { scale: 5 }).then(function (canvas) {
+
+						//Create a ClientPrintJob
+						var cpj = new JSPM.ClientPrintJob();
+						//Set Printer type (Refer to the help, there many of them!)
+						if ($('#useDefaultPrinter').prop('checked')) {
+							cpj.clientPrinter = new JSPM.DefaultPrinter();
+						} else {
+							cpj.clientPrinter = new JSPM.InstalledPrinter($('#installedPrinterName').val());
+						}
+						//Set content to print... 
+						var b64Prefix = "data:image/png;base64,";
+						var imgBase64DataUri = canvas.toDataURL("image/png");
+						var imgBase64Content = imgBase64DataUri.substring(b64Prefix.length, imgBase64DataUri.length);
+
+						var myImageFile = new JSPM.PrintFile(imgBase64Content, JSPM.FileSourceType.Base64, 'myFileToPrint.png', 1);
+						//add file to print job
+						cpj.files.push(myImageFile);
+
+						//Send print job to printer!
+						cpj.sendToClient();
+
+
+					});
+				}
+			}
+
+		</script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+		<style>
+		body { font-family: 'Barlow', sans-serif; }
+		table { border-collapse:collapse; }
+		table td { padding:5px; }
+		hr {
+		  border:none;
+		  border-top:1px dashed #000;
+		  color:#fff;
+		  background-color:#fff;
+		  height:1px;
+		}
+		p{font-size: 13px;text-align: center;font-weight: 600;font-family: monospace;margin: 0px}
+		</style>
+	</head>
+	<body>
+		<div style="max-width: 80mm;font-weight: 600;font-family: monospace;" >
+			<p><img src="https://rajamariamman.grasp.com.my/uploads/main/1697189976_WhatsApp Image 2023-10-13 at 17.30.20.jpeg" style="width:120px;" align="center"></p>
+			<p>Rajamariamman Temple</p>
+			<p style="font-size:16px;">Jalan Beringin 1, Taman Sari</br>Selangor, Malaysia</br>
+			Banting-42700<br>Tel: </p>
+			<hr>
+			<p style="text-align: center;">Date: 2023-03-12 09:47:54</p>
+			<p style="text-align: center;">Bill NO: AR230300094</p>
+			<hr>
+
+			<p style="text-align: left;">SNO&nbsp;&nbsp;PARTICULARS</p>
+			<hr>
+				<p style="text-align: left;">1&nbsp;&nbsp;KUNGUMAM ARCHANAI<br>&nbsp;&nbsp;
+				   குங்கும அர்ச்சனை<br>&nbsp;&nbsp;
+				   <span style="font-size: 20px;">[RM 5.00 x 1 = RM 5.00]</span></p>
+				<p style="text-align: left;">2&nbsp;&nbsp;GHEE LAMP SMALL<br>&nbsp;&nbsp;
+				   நெய் விளக்கு சிறியது<br>&nbsp;&nbsp;
+				   <span style="font-size: 20px;">[RM 2.00 x 3 = RM 6.00]</span></p>
+			<hr>
+			<table style="width:100%;">
+			<tr><th align="left">Name</th><th align="left">Rasi</th><th align="left">Natchathram</th></tr>
+			</table>
+			<hr>
+			<p style="text-align: center; font-size: 24px;">Total:  RM 11.00</p>
+
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+		<button type="button" onclick="print();">Print Now...</button>
+									
+	</body>
+</html>

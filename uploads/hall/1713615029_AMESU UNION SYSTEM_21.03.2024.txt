@@ -1,0 +1,43 @@
+AMESU UNION SYSTEM_22.03.2024
+
+NEED TO ADD THE DEDUCTION CENTER MASTER
+Must be check all the Table Grid column title (Bank name - Deduction center, Bank branch - Deduction center branch)
+
+MASTER
+1. State
+   	1. When add new state its showed an error message
+	2. 13 States only but we have 568 must be check it
+	3. When I edit state means Its added double time
+2. City
+	1. When I choose State name in dropdown means its showed city names also need to be check
+	2. When I add/edit new City means Its added double time
+3. MEMBER QUERY
+	1. New Member Registration its showed an error message
+  	2. Why all the existing Members dont have the Membership Number?
+4. SUBSCRIPTION
+4.1 SUBSCRIPTION ENTRY
+	1. Bank dropdown must be change to Deduction center also the Deduction center name
+	2. Bankwise Monthly status change to Deduction center wise Monthly status
+	3. Download Sample must be check with client
+	4. Member status Expand Advanced search must be replace the Bank name (CHECK ALL THE STATUS)
+4.2 FOLLOWUP MEMBERS
+	1. Bank name and Branch name must be change to Deduction center name and Branch
+	2. Temporarly hide the Type
+4.3 SUBSCRIPTION VARIATION
+	1. We have only Two group Deduction center-Deduction center branch
+4.4 SUBSCRIPTION DISCREPANCY
+	1. We have only Two group Deduction center-Deduction center branch
+	2. Bank name must be change to Deduction center
+	3. Increment Type must be hide
+5. MEMBER TRANSFER HISTORY
+	1. From Bank - To Bank label must be change
+6. REPORT
+	1. New Members - Bank and Bank Branch must be change in search filter, Table grid also change
+	2. Resign Members - Same as new members, Remove Groupby also	
+	3. Designation Report - Union Branch Name change to Deduction center name
+	4. Statistic report - Union Branch Name change to Deduction center name, Table Grid must be check
+	5. Variation By Bank - Union Branch Name change to Deduction center name, Table Grid must be check (Change Bank to Deduction center)
+	6. Subscription By Bank - Union Branch Name change to Deduction center name, Table Grid must be check (Change Bank to Deduction center)
+	7. Due Report - Union Branch Name change to Deduction center name, Table Grid must be check (Change Bank to Deduction center)
+	8. Member Statement - Got some Error and Member number column showed empty in Member Query
+	9. Borang N need to check with client

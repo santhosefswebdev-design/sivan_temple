@@ -1,0 +1,92 @@
+<style>
+    .thead{
+        color: #fff;
+        background-color: red;
+    }
+    a:hover { text-decoration: none; }
+</style>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2> ACCOUNTS</h2>
+        </div>
+        <!-- Basic Examples -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <div class="row"><div class="col-md-8"><h2>Balance Sheet</h2></div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <?php if($_SESSION['succ'] != '') { ?>
+                            <div class="row" style="padding: 0 30%;" id="content_alert">
+                                <div class="suc-alert">
+                                    <span class="suc-closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                                    <p><?php echo $_SESSION['succ']; ?></p> 
+                                </div>
+                            </div>
+                        <?php } ?>
+                         <?php if($_SESSION['fail'] != '') { ?>
+                            <div class="row" style="padding: 0 30%;" id="content_alert">
+                                <div class="alert">
+                                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                                    <p><?php echo $_SESSION['fail']; ?></p>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <form action="<?php echo base_url();?>/balance_sheet" method="post">
+                            <div class="container-fluid">
+                                <div class="row clearfix">
+                                <div class="col-sm-3 date">
+                                    <div class="form-group">
+                                        <div class="form-line focused" style="margin-top:-20px;">
+                                            <label class="form-label" style="display: contents;">From Date</label>
+                                            <input type="date" name="fdate" id="fdate" class="form-control" value="<?= $sdate; ?>">
+                                            <!--<label class="form-label">From Date</label>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 date">
+                                    <div class="form-group">
+                                        <div class="form-line focused" style="margin-top:-20px;">
+                                            <label class="form-label" style="display: contents;">To Date</label>
+                                            <input type="date" name="tdate" id="tdate" class="form-control" value="<?= $tdate; ?>">
+                                            <!--<label class="form-label">To Date</label>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="col-sm-2" align="right">
+                                    <button type="submit" class="btn btn-success btn-lg waves-effect">SUBMIT</button>
+                                    <!-- <label id="print" class="btn btn-primary btn-lg waves-effect">Print</label> -->
+                                </div>
+                                                                </div>
+                                </div>
+                            </form>
+                            <form style="display: none;" target="_blank" id="print_sheet" action="<?php echo base_url();?>/balance_sheet/print_balance_sheet" method="post">
+                                <input type="date" name="fdate" id="fdate" class="form-control" value="<?= $sdate; ?>">
+                                <input type="date" name="tdate" id="tdate" class="form-control" value="<?= $tdate; ?>">
+                            </form>
+                        <div class="table-responsive">
+                        <table class="table table-striped" style="width:100%;">
+                        <tr>
+                            <th style="width: 40%;" class="thead">Account Name</th>
+                            <th style="text-align: right;" class="thead">Amount</th>
+                        </tr>
+                        <?php foreach($list as $row) { ?>
+                            <?php print_r($row); ?>
+                        <?php } ?>
+                        </table>
+                        </div>
+                        <div class="row"><div class="col-md-12" align="center"><label id="print" class="btn btn-primary">Print</label></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $("#print").click(function(){
+        $("#print_sheet").submit();
+    })
+</script>

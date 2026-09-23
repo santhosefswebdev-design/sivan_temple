@@ -1,0 +1,190 @@
+ARULMIGU RAJAMARIAMMAN DEVASTHANAM DEV VERSION_09.05.2024
+---------------------------------------------------------
+ADMIN LOGIN
+-----------
+1. HALL BOOKING
+Dear Naveen, 
+You registered the MARRIAGE in 14-05-2024 at the slot time() 
+The Total amount for the event is RM 2500.00 
+You paid RM 1750.00 
+Your balance RM 750.00
+
+- Slot Time Missed, While SAVE LOADER issue (Same Record booked in two times)
+- 404. This page doesn't exist. (https://api.whatsapp.com/resolve/?deeplink=%2F%2B60%2B60146488869%3Ftext%3D%2509%2509%2509%2509%2509%2509%2509%2509%2509%2509%2509%2509Dear%2BNaveen%252C%2B%2B%2B%250D%250A%2509You%2Bregistered%2Bthe%2BMARRIAGE%2Bin%2B14-05-2024%2Bat%2Bthe%2Bslot%2Btime%2528%2529%250D%250A%2509The%2BTotal%2Bamount%2Bfor%2Bthe%2Bevent%2Bis%2BRM%2B2500.00%250D%250A%2509You%2Bpaid%2BRM%2B1750.00%250D%250A%2509Your%2Bbalance%2BRM%2B750.00&not_found=1)
+
+2. Hall Booking Reminder List
+
+- https://api.whatsapp.com/resolve/?deeplink=%2F%2B60%2B60146488869%3Ftext%3DHi%252C%250A%2509Your%2Bbooking%2Bhas%2Bremaining%2B4%2Bdays%2Bto%2Bschedule%252C%2BYou%2Bneed%2Bto%2Bpay%2Bthe%2Bremaining%2Bamount.&not_found=1
+- https://rajamariamman.grasp.com.my/dev/hallbooking/send_whatsapp_msg/130 - Whatsapp Message Faild
+
+3. PROPERTIES
+Dear Naveen, 
+This is a friendly reminder that your rent payment for the month of May. 
+Here are the details for your reference: 
+Rental Property: Property 8 
+Rental Amount: 2500.00 
+We kindly request that you submit your payment on or before the due date to avoid any late fees or disruptions to your tenancy. 
+If you have already made the payment, we sincerely thank you for your promptness. 
+Your cooperation in this matter is greatly appreciated, and it contributes to the smooth operation of the property. 
+Thank you for being a valued tenant. 
+Best regards, 
+ARULMIGU RAJAMARIAMMAN DEVASTHANAM 
+
+4. Cash Donation - NOT WORKING
+
+5. Ubayam - NOT WORKING
+
+6. Prasadham - NOT WORKING
+
+7. Annathanam - NOT WORKING
+
+COUNTER LOGIN
+--------------
+1. HALL BOOKING - QR Code NOT WORKING
+Dear Devotee,
+We are delighted to inform you that you have been successfully registered for the upcoming event.
+
+Event Details:
+
+Date: 13 May, 2024
+Time: 19:00-22:30
+Payment Information:
+
+Total Amount: 2500.00
+Remaining Payment: 1000.00
+
+Please ensure the remaining payment is settled before the event date.
+
+Thank you.
+
+2. Ubayam-CASH
+Dear Devotee,
+We are delighted to inform you that you have been successfully registered for the upcoming event.
+
+Event Details:
+
+Date: 09 May, 2024
+Time: 05:39 PM
+Payment Information:
+
+Total Amount: 151.00
+Remaining Payment: 0
+
+Please ensure the remaining payment is settled before the event date.
+
+Thank you.
+
+2. Ubayam-QR CODE
+Dear Devotee,
+We are delighted to inform you that you have been successfully registered for the upcoming event.
+
+Event Details:
+
+Date: 09 May, 2024
+Time: 05:41 PM
+Payment Information:
+
+Total Amount: 101.00
+Remaining Payment: 0
+
+Please ensure the remaining payment is settled before the event date.
+
+Thank you.
+
+3. Prasadham-CASH
+Dear Devotee,
+
+We are delighted to inform you that your registration for Prasadam at our temple has been successfully completed.
+
+Registration Details:
+
+Date: 09 May, 2024
+Collection Date: 09 May, 2024
+Collection Time: 05:43 PM
+Amount: 1000.00
+
+Your participation in this noble cause is truly appreciated. Should you have any questions or need further information, please feel free to reach out.
+
+Wishing you blessings and joy on this auspicious occasion.
+
+Warm regards,
+Temple Management
+
+3. Prasadham-QR CODE
+Dear Devotee,
+
+We are delighted to inform you that your registration for Prasadam at our temple has been successfully completed.
+
+Registration Details:
+
+Date: 09 May, 2024
+Collection Date: 11 May, 2024
+Collection Time: 05:44 PM
+Amount: 500.00
+
+Your participation in this noble cause is truly appreciated. Should you have any questions or need further information, please feel free to reach out.
+
+Wishing you blessings and joy on this auspicious occasion.
+
+Warm regards,
+Temple Management
+
+4. Cash Donation-CASH
+Dear Devotee,
+
+We extend our heartfelt gratitude for your generous cash donation to the temple. Your contribution plays a vital role in supporting our endeavors and maintaining the sanctity of our sacred space.
+
+Your kindness and devotion are deeply appreciated, and we are truly thankful for your continued support.
+
+May your benevolence be blessed, and we look forward to your continued presence in our temple community.
+
+With sincere thanks,
+Temple Management
+
+4. Cash Donation-QR CODE
+Dear Devotee,
+
+We extend our heartfelt gratitude for your generous cash donation to the temple. Your contribution plays a vital role in supporting our endeavors and maintaining the sanctity of our sacred space.
+
+Your kindness and devotion are deeply appreciated, and we are truly thankful for your continued support.
+
+May your benevolence be blessed, and we look forward to your continued presence in our temple community.
+
+With sincere thanks,
+Temple Management
+
+5. Annathanam - NOT WORKING
+6. Member Registration-CASH
+Dear Member,
+
+We are delighted to welcome you to gokul! Your registration for membership has been successfully processed.
+
+Membership Details:
+
+Membership Type: Normal Member
+Member ID: 000002
+Registration Date: 09 May, 2024
+
+Thank you for becoming a valued member of our community. Your support is vital, and we look forward to sharing many meaningful experiences with you.
+
+Warm regards,
+Temple Management
+
+6. Member Registration-QR CODE
+Dear Member,
+
+We are delighted to welcome you to NAVEEN! Your registration for membership has been successfully processed.
+
+Membership Details:
+
+Membership Type: LIFETIME MEMBER
+Member ID: 000003
+Registration Date: 09 May, 2024
+
+Thank you for becoming a valued member of our community. Your support is vital, and we look forward to sharing many meaningful experiences with you.
+
+Warm regards,
+Temple Management
+
+
+
