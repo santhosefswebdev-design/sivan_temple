@@ -54,6 +54,7 @@
 		<?php echo $temp_details['city'].'-'.$temp_details['postcode']; ?>.
 		Tel: <?= $temp_details['telephone']; ?></p>
 		<hr>
+		<p style="text-align:center;font-size:30px;">WELCOME <br> வரவேற்கிறோம்</p>
 		<p style="text-align: center;">Date: <?php echo date('d-m-Y h:ia', strtotime($qry1['created'])); ?></p>
 
 		<p style="text-align: center;">Bill NO: <?php echo $qry1['ref_no']; ?></p>
