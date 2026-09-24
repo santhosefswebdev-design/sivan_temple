@@ -9,6 +9,10 @@ class Login extends BaseController
         helper('url');
     }
     public function index(){
+		if($this->session->get('login') == true){
+			header('Location: /dashboard');
+			exit;
+		}
 		echo view('login');
     }
     

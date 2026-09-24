@@ -182,60 +182,22 @@
 		<button class="btn btn-primary" id="web_print">Web Print</button>
 		<button class="btn btn-success" id="imin_print">Imin Print</button>
 	</div> */ ?>
-	<script>
-		var vConsole = new VConsole();
-		function printDiv(){
-
-		  var divToPrint=document.getElementById('archanai_ticket');
-
-		  var newWin=window.open('','Print-Window');
-
-		  newWin.document.open();
-
-		  newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
-
-		  newWin.document.close();
-
-		  setTimeout(function(){newWin.close();},1500);
-
+	<style>
+		/* Browser print (same method as daily closing): 80mm roll, scaled from the 150mm layout */
+		@page { size: 80mm auto; margin: 0; }
+		@media print {
+			body { margin: 0; }
+			.archanai_loader { display: none !important; }
+			#archanai_ticket { zoom: 0.53; padding: 0; padding-bottom: 60px; }
 		}
+	</style>
+	<script>
 		$(document).ready(function(){
-			$(document).on('click', '#web_print', function(){
-				printDiv();
-			});
-			/* var node = document.getElementById('archanai_ticket');
-			domtoimage.toJpeg(node).then(function (dataUrl) {
-				$('#test_img').attr('src', dataUrl);
-			}); */
-		});
-		var IminPrintInstance = new IminPrinter();
-		console.log('IminPrintInstance');
-		console.log(IminPrintInstance);
-		IminPrintInstance.connect().then(async (isConnect) => {	
-			if (isConnect) {
-				$('.archanai_loader').hide();
-				$('#archanai_ticket').show();
-				console.log( await IminPrintInstance.getPrinterStatus());
-				var QrCodeSize;
-				//mui('body').on('tap', '#imin_print', async function (e) {
-				IminPrintInstance.initPrinter();
-				console.log( await IminPrintInstance.getPrinterStatus());
-				var node = document.getElementById('archanai_ticket');
-				domtoimage.toJpeg(node).then(function (dataUrl) {
-					IminPrintInstance.printSingleBitmap(dataUrl).then(()=> {
-						console.log('sucess');
-						IminPrintInstance.printAndFeedPaper(100);
-						IminPrintInstance.partialCut();
-						IminPrintInstance.openCashBox();
-						setTimeout(function(){window.close();}, 500);
-						//setTimeout(function(){print_queue(IminPrintInstance, ticket, i + 1);},1000);
-					});
-					/* setTimeout(function(){window.close();}, 1500); */
-				});
-				//});
-			}else{
-				alert('error printer');
-			}
+			$('.archanai_loader').hide();
+			$('#archanai_ticket').show();
+			setTimeout(function(){
+				window.print();
+				setTimeout(function(){ window.close(); }, 60000);
+			}, 500);
 		});
 	</script>
-</body>
